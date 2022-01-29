@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test click counter</title>
+  </head>
+  <body>
+    <div id="counter">
+      <div>
+        <span id="counting"> 00 </span>
+      </div>
+      <div id="button">
+        <button>click!</button>
+      </div>
+    </div>
+    <script>
+      function onButtonClicked() {
+        count++;
+        counting.innerText = String(count).padStart(2, "0");
+      }
+
+      let count = 0;
+      const button = document.getElementById("button");
+      const counting = document.querySelector("#counting");
+      button.addEventListener("click", onButtonClicked);
+    </script>
+  </body>
+</html>
