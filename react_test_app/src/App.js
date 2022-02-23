@@ -1,27 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+const root = document.getElementById("root");
 function App(){
-    const root = document.getElementById("root");
-    let counter = 0;
+   const data = React.useState(0);
+    console.log(data);
+    // array(2) [undefined, func] --> undefined == data, func == func to change data
+    const [counter, modifier] = data;
+    // is same with
+    //const counter = data[0];
+    //const modifier = data[1];
     
-    //not a good way to re-rendering
-    function countUp(){
-        counter +=1;
-        Render();
-    }
-    function Render(){
-        ReactDOM.render(<Container/>, root);
-    }
-    const Container =()=> (
+    return(
     <div>
-        <h3>total clicks: {counter}</h3>
-        <button onClick={countUp}>click me!</button>
+        <h3>total clicks:{counter}</h3>
+        <button >click me!</button>
     </div>);
 
-    Render();
 }
-
+ReactDOM.render(<App/>,root);
 export default App;
 
 //start from #3.1
