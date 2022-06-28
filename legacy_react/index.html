@@ -14,46 +14,51 @@
   <script type="text/babel">
 
     const root = document.getElementById("root");
-  /*let counter = 0; //can use this var in jsx with {}
-    function countUp() {
-        
-        counter = counter + 1;
-        
-        reRender()
-    }
-    function reRender(){
-        // bad way
-        //ReactDOM.render(<App />, root); 
-    }
-     const App = () => (
-      <div>
-        <h3>Total click: {counter}</h3>
-        <button onClick={countUp}>Click me</button>
-      </div>
-    ); */
-
-    /*
-      **how to get elements from list**
-      const food = ["tomato", "potato"]
-      const [fisrt, sec] = food
-      console.log(first) --> "tomato" == food[0]
-    */
+  
     function App() { 
-        //state!!
-        const data = React.useState(0) // --> data(=arr) = [0, f] -> 0 is data(like counter), f is func(like countUp) to change data
-        //console.log(data)
-        const [counter, setCounter] = data
-        const onClick = () =>{
-            //counter = counter + 1;
-            //console.log(counter)
-
-            //setCounter will change the value of counter as same as the value in () and trigger the re-rendering
-            setCounter(counter + 1);
+        const [minutes, setMinutes] = React.useState(0);
+        const onChange =(event)=>{
+            //console.log(event);
+            //console.log(event.target.value);
+            setMinutes(event.target.value);
         }
+        const reset =()=>{
+            setMinutes(0)
+        }
+
+
+        //have to use htmlFor rather than for and className rather than class.
+        //because for and class is reserved 
+
+        //connect minutes val with input tag by setting 'value' attribute in input tag
+        //to control the input value on the outside
         return(
             <div>
-                <h3>Total click: {counter}</h3>
-                <button onClick ={onClick}>Click me</button>
+                <h1>bb's Unit Converter</h1>
+                <h4>you want to convert {minutes}</h4>
+                <div>
+                    <label htmlFor="minutes">Minutes</label> 
+                    <input
+                        id="minutes"
+                        value={minutes} 
+                        placeholder="Minutes" 
+                        type="number" 
+                        onChange={onChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="hours">Hours</label>
+                    <input
+                        id="hours"
+                        value={minutes / 60} 
+                        placeholder="Hours" 
+                        type="number" 
+                    />
+                </div>
+                <button
+                    onClick={reset}>
+                    Reset
+                </button>
             </div>
         );
     }

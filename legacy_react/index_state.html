@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 
+  <script type="text/babel">
+
+    const root = document.getElementById("root");
+  /*let counter = 0; //can use this var in jsx with {}
+    function countUp() {
+        
+        counter = counter + 1;
+        
+        reRender()
+    }
+    function reRender(){
+        // bad way
+        //ReactDOM.render(<App />, root); 
+    }
+     const App = () => (
+      <div>
+        <h3>Total click: {counter}</h3>
+        <button onClick={countUp}>Click me</button>
+      </div>
+    ); */
+
+    /*
+      **how to get elements from list**
+      const food = ["tomato", "potato"]
+      const [fisrt, sec] = food
+      console.log(first) --> "tomato" == food[0]
+    */
+    function App() { 
+        //state!!
+        const data = React.useState(0) // --> data(=arr) = [0, f] -> 0 is data(like counter), f is func(like countUp) to change data
+        //console.log(data)
+        const [counter, setCounter] = data
+        const onClick = () =>{
+            //counter = counter + 1;
+            //console.log(counter)
+
+            //setCounter will change the value of counter as same as the value in () and trigger the re-rendering
+            // this way will change state value directly
+            //setCounter(counter + 1);
+
+            //more safer way to change the state based on current state value
+            // this way gaurantee that the value we are gonna change is same with the current value
+            setCounter((curr) => curr + 1);
+        }
+        return(
+            <div>
+                <h3>Total click: {counter}</h3>
+                <button onClick ={onClick}>Click me</button>
+            </div>
+        );
+    }
+    //ReactDOM.render(Container, root);
+    ReactDOM.render(<App />, root); //show it to user
+  </script>
+</html>
