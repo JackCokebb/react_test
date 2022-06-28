@@ -42,11 +42,18 @@
         //state!!
         const data = React.useState(0) // --> data(=arr) = [0, f] -> 0 is data(like counter), f is func(like countUp) to change data
         //console.log(data)
-        const [counter, modifier] = data
+        const [counter, setCounter] = data
+        const onClick = () =>{
+            //counter = counter + 1;
+            //console.log(counter)
+
+            //setCounter will change the value of counter as same as the value in () and trigger the re-rendering
+            setCounter(counter + 1);
+        }
         return(
             <div>
-                <h3>Total click: 0</h3>
-                <button >Click me</button>
+                <h3>Total click: {counter}</h3>
+                <button onClick ={onClick}>Click me</button>
             </div>
         );
     }
