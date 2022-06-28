@@ -16,14 +16,19 @@
     const root = document.getElementById("root");
   
     function App() { 
-        const [minutes, setMinutes] = React.useState(0);
+        const [amount, setAmount] = React.useState(0);
+        const [flipped, setFlip] = React.useState(false);
         const onChange =(event)=>{
             //console.log(event);
             //console.log(event.target.value);
-            setMinutes(event.target.value);
+            setAmount(event.target.value);
         }
         const reset =()=>{
-            setMinutes(0)
+            setAmount(0);
+        }
+        const onFlip =()=>{
+            setFlip((curr) => !curr);
+            reset();
         }
 
 
@@ -35,29 +40,36 @@
         return(
             <div>
                 <h1>bb's Unit Converter</h1>
-                <h4>you want to convert {minutes}</h4>
+                <h4>you want to convert {amount}</h4>
                 <div>
                     <label htmlFor="minutes">Minutes</label> 
                     <input
                         id="minutes"
-                        value={minutes} 
+                        value={flipped ? amount * 60 : amount} 
                         placeholder="Minutes" 
                         type="number" 
                         onChange={onChange}
+                        disabled={flipped}
                     />
                 </div>
                 <div>
                     <label htmlFor="hours">Hours</label>
                     <input
                         id="hours"
-                        value={minutes / 60} 
+                        value={flipped ? amount : amount / 60} 
                         placeholder="Hours" 
-                        type="number" 
+                        type="number"
+                        onChange={onChange}
+                        disabled={!flipped}
                     />
                 </div>
                 <button
                     onClick={reset}>
                     Reset
+                </button>
+                <button
+                    onClick={onFlip}>
+                    Flip
                 </button>
             </div>
         );
