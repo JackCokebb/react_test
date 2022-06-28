@@ -12,43 +12,45 @@
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 
   <script type="text/babel">
+
     const root = document.getElementById("root");
-    /*const h3 = React.createElement(
-      "h3",
-      {
-        onMouseEnter: () => console.log("mouse entered"),
-      },
-      "hello i am not a span"
-    );*/
-    
-    //jsx
-
-    //component should be start with ***upper case***
-    const Title = () => ( //arrow func ===  function Title(){return (<h3>~~)}
-      <h3 id="title" onMouseEnter={() => console.log("mouse entered")}>
-        Hello i am a title
-      </h3>
-    ); 
-    /*const button = React.createElement(
-      "button",
-      {
-        onClick: () => console.log("clicked"),
-      },
-      "click me!"
-    );*/
-    const Button = () => (
-      <button onClick={() => console.log("clicked")}>Click me</button>
-    );
-    //const Container = React.createElement("div", null, [h3, btn]);
-
-    //<Title /> (==function) === <h3 id="title" onMouseEnter={() => console.log("mouse entered")}>Hello i am a title</h3>
-    const Container = () => (
+  /*let counter = 0; //can use this var in jsx with {}
+    function countUp() {
+        
+        counter = counter + 1;
+        
+        reRender()
+    }
+    function reRender(){
+        // bad way
+        //ReactDOM.render(<App />, root); 
+    }
+     const App = () => (
       <div>
-        <Title />
-        <Button />
+        <h3>Total click: {counter}</h3>
+        <button onClick={countUp}>Click me</button>
       </div>
-    );
+    ); */
+
+    /*
+      **how to get elements from list**
+      const food = ["tomato", "potato"]
+      const [fisrt, sec] = food
+      console.log(first) --> "tomato" == food[0]
+    */
+    function App() { 
+        //state!!
+        const data = React.useState(0) // --> data(=arr) = [0, f] -> 0 is data(like counter), f is func(like countUp) to change data
+        //console.log(data)
+        const [counter, modifier] = data
+        return(
+            <div>
+                <h3>Total click: 0</h3>
+                <button >Click me</button>
+            </div>
+        );
+    }
     //ReactDOM.render(Container, root);
-    ReactDOM.render(<Container />, root); //show it to user
+    ReactDOM.render(<App />, root); //show it to user
   </script>
 </html>
