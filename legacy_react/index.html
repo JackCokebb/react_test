@@ -16,36 +16,27 @@
     const root = document.getElementById("root");
 
     //component is the function which returns JSX
-    function SaveBtn(){
+    //function Btn(props){
+    function Btn({what, big}){ // {what} shortcut <--> props.what
         return <button 
         style={{
             backgroundColor: "tomato",
             color:"white",
             padding:"10px 20px",
             border: 0,
-            borderRadius:10
+            borderRadius:10,
+            fontSize: big ? 18 : 16
         }}
-        >Save Changes</button>
+        >{what}</button>
     }
-    function ConfirmBtn(){
-        return <button 
-        style={{
-            backgroundColor: "green",
-            color:"white",
-            padding:"10px 20px",
-            border: 0,
-            borderRadius:10
-        }}
-        >Confirm</button>
-    }
-
 
     function App() { 
-       
+       // all of the properties of the component(like 'what="Save"') will be pass as an argument 
+       // to component func as an object including every property
         return(
             <div>
-                <SaveBtn/>
-                <ConfirmBtn/>
+                <Btn what="Save Changes" big={true}/>
+                <Btn what="Continue" big={false}/>
             </div>
         );
     }
