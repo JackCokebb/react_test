@@ -14,10 +14,10 @@
   <script type="text/babel">
 
     const root = document.getElementById("root");
-  
-    function App() { 
+    
+    function MinutesToHours() { 
         const [amount, setAmount] = React.useState(0);
-        const [flipped, setFlip] = React.useState(false);
+        const [inverted, setInverted] = React.useState(false);
         const onChange =(event)=>{
             //console.log(event);
             //console.log(event.target.value);
@@ -26,8 +26,8 @@
         const reset =()=>{
             setAmount(0);
         }
-        const onFlip =()=>{
-            setFlip((curr) => !curr);
+        const onInvert =()=>{
+            setInverted((curr) => !curr);
             reset();
         }
 
@@ -39,28 +39,26 @@
         //to control the input value on the outside
         return(
             <div>
-                <h1>bb's Unit Converter</h1>
-                <h4>you want to convert {amount}</h4>
                 <div>
                     <label htmlFor="minutes">Minutes</label> 
                     <input
                         id="minutes"
-                        value={flipped ? amount * 60 : amount} 
+                        value={inverted ? amount * 60 : amount}  
                         placeholder="Minutes" 
                         type="number" 
                         onChange={onChange}
-                        disabled={flipped}
+                        disabled={inverted}
                     />
                 </div>
                 <div>
                     <label htmlFor="hours">Hours</label>
                     <input
                         id="hours"
-                        value={flipped ? amount : amount / 60} 
+                        value={inverted ? amount : amount / 60} 
                         placeholder="Hours" 
                         type="number"
                         onChange={onChange}
-                        disabled={!flipped}
+                        disabled={!inverted}
                     />
                 </div>
                 <button
@@ -68,9 +66,37 @@
                     Reset
                 </button>
                 <button
-                    onClick={onFlip}>
+                    onClick={onInvert}>
                     Flip
                 </button>
+            </div>
+        );
+    }
+    function KmToMiles(){
+        return(
+            <h3>Km 2 Mile</h3>
+        );
+    }
+    function App() { 
+        const [index, setIndex] = React.useState("-1");
+        const onSelect = (event) =>{
+            console.log(event)
+            setIndex(event.target.value)
+            console.log(index)
+        }
+
+        // In JSX code, we can implement JS code by writing JS codes into {}
+        return(
+            <div>
+                <h1>bb's Unit Converter</h1>
+                <select value={index} onChange={onSelect}>
+                    <option value="-1">Select your Unit </option>
+                    <option value="0">Minutes & Hours </option>
+                    <option value="1">Km & Miles </option>
+                </select>
+                <hr/>
+                {index === "0" ? <MinutesToHours/> : null}
+                {index === "1" ? <KmToMiles/> : null}
             </div>
         );
     }
