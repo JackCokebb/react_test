@@ -8,17 +8,19 @@
   <body>
     <div id="root"></div>
   </body>
-  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> 
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script> 
   <script type="text/babel">
     
     const root = document.getElementById("root");
 
     //component is the function which returns JSX
     //function Btn(props){
-    function Btn({what, big}){ // {what} shortcut <--> props.what
+    function Btn({what, big = false, onClick}){ // {what} shortcut <--> props.what
         return <button 
+        onClick={onClick}
         style={{
             backgroundColor: "tomato",
             color:"white",
@@ -29,13 +31,28 @@
         }}
         >{what}</button>
     }
+    // Continue btn is not changed but re-rendered when savechange btn is clicked
+    // so if you want to make React not to re-render continue btn (because there is no change on continue btn)
+    // use memo -> render only prop(state)-changed components -> better performance
+    const MemorizedBtn = React.memo(Btn)
+
+    //As we add prop type library we can specify the type of props
+    Btn.propTypes={
+        what: PropTypes.string.isRequired,
+        big: PropTypes.bool,
+        onClick: PropTypes.func
+    }
 
     function App() { 
+
+        const [value, setValue] = React.useState("Save Changes");
+        const changeValue = () => setValue("Revert Changes");
        // all of the properties of the component(like 'what="Save"') will be pass as an argument 
        // to component func as an object including every property
+       // onClick here is not a real event listener but a name of the property //passing the func as prop
         return(
             <div>
-                <Btn what="Save Changes" big={true}/>
+                <Btn what={value} big={true} onClick={changeValue}/>
                 <Btn what="Continue" big={false}/>
             </div>
         );
