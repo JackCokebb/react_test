@@ -1,19 +1,16 @@
-// import logo from './logo.svg';
-// import './App.css';
 import Button from "./Button";
-import PropTypes from "prop-types";
+// create-react-app change CSS code into js object
+// and this js object have btn inside.
+import styles from "./App.module.css"
+
 
 function App() {
   return (
     <div>
-      <h1>Welcome back to React</h1>
+      <h1 className={styles.title}>Welcome back to React</h1>
       <Button text={"setsetset"} />
     </div>
   );
 }
-
-Button.propTypes = {
-  text: PropTypes.string.isRequired,
-};
 
 export default App;
