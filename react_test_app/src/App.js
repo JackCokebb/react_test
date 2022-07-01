@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
 // import './App.css';
-import Button from "./Button"
+import Button from "./Button";
+import PropTypes from "prop-types";
 
 function App() {
   return (
@@ -10,5 +11,9 @@ function App() {
     </div>
   );
 }
+
+Button.propTypes = {
+  text: PropTypes.string.isRequired,
+};
 
 export default App;
