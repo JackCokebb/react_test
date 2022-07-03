@@ -16,7 +16,7 @@ function Hello(){
   return <h1>Hello!</h1>;
 }
 
-function App() {
+function Cleanup_func() {
   
   const [showing, setShowing] = useState(false);
   const onClick = () => {
@@ -32,4 +32,3 @@ function App() {
   );
 }
 
-export default App;

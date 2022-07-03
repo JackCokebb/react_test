@@ -1,33 +1,38 @@
-import { useState, useEffect } from "react";
-
-//another component
-//component is the function that return jsx
-// uppercase needed
-function Hello(){
-  //log will appear only when component is created at first time.
-  useEffect(()=>{
-    console.log("created!");
-
-    // the function that will be run when the component is destroyed 
-    // it is return func of useEffect func
-    // this is called **cleanup function**
-    return ()=> console.log("destroyed :(")
-  },[])
-  return <h1>Hello!</h1>;
-}
+import { useState } from "react";
 
 function App() {
-  
-  const [showing, setShowing] = useState(false);
-  const onClick = () => {
-    setShowing(prev => !prev);
+  const [toDo, setToDo] = useState("");
+  const [toDos, setToDos] = useState([]);
+  const onChange = (event) =>{
+    setToDo(event.target.value);
   }
+  const onSubmit = (event) =>{ 
+    event.preventDefault();
+    if(toDo === ""){
+      return;
+    }
 
-  // we are creating and destroying component with ' showing ? "Hide" : "Show" '
+    // we can not directly change a state like below
+    //toDos.push(); --> X
+
+    // we should always use modifier func like setToDos
+    // '...' give use the elements of the array
+    setToDos(currentArray => [toDo, ...currentArray]);
+    setToDo("");
+  }
+  console.log(toDos);
   return (
     <div>
-      <button onClick={onClick}>{showing ? "Hide" : "Show" }</button>
-      {showing ? <Hello /> : null}
+      <h1>My Todos ({toDos.length})</h1>
+      <form onSubmit={onSubmit}>
+      <input 
+        value={toDo} 
+        onChange={onChange} 
+        type="text" 
+        placeholder="Write your to do..." 
+      />
+      <button>Add ToDo</button>
+      </form>
     </div>
   );
 }
