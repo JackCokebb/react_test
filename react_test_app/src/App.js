@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-// import dotenv from "dotenv";
-// dotenv.config({ path: "../.env", encoding: "utf8" });
+import Movie from "./Movie";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -29,11 +28,8 @@ function App() {
       {loading ? <h2>Loading...</h2> : 
         <div>
           {movies.map((movie)=>
-            <div key={movie.rnum}>
-              <h2>{movie.movieNm}</h2>
-              {movie.openDt}
-              <hr/>
-            </div>)}
+            <Movie key={movie.rnum} movieNm={movie.movieNm} openDt={movie.openDt}/>
+          )}
         </div>
       }
     </div>
