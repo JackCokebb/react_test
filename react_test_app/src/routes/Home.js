@@ -13,6 +13,7 @@ function Home(){
       "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=" + KORMOVIE_KEY +"&targetDt=20220701&multiMovieYn=N"
     );
     const json = await response.json();
+    console.log(json);
     setMovies(json.boxOfficeResult.dailyBoxOfficeList);
     setLoading(false);
   }
@@ -29,7 +30,12 @@ function Home(){
       {loading ? <h2>Loading...</h2> : 
         <div>
           {movies.map((movie)=>
-            <Movie key={movie.rnum} movieNm={movie.movieNm} openDt={movie.openDt}/>
+            <Movie 
+                key={movie.movieCd} 
+                id={movie.movieCd}
+                movieNm={movie.movieNm} 
+                openDt={movie.openDt}
+            />
           )}
         </div>
       }
