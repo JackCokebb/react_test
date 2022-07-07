@@ -1,4 +1,4 @@
-// useParams gets params from URL
+// ** useParams gets params from URL **
 import { useEffect, useState } from "react";
 import {useParams} from "react-router-dom"
 
