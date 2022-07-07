@@ -9,7 +9,7 @@ function Movie({id, movieNm, openDt}){
     return (
     <div>
         <h2>
-            <Link to={`/movie/${id}`}>{movieNm}</Link>
+            <Link to={`${process.env.PUBLIC_URL}/movie/${id}`}>{movieNm}</Link>
         </h2>
         {openDt}
         <hr/>
