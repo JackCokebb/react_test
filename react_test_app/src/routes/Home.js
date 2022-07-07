@@ -10,7 +10,7 @@ function Home(){
   const getMovies = async() =>{
     const KORMOVIE_KEY = process.env.REACT_APP_KORMOVIE_API_KEY;
     const response = await fetch(
-      "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=" + KORMOVIE_KEY +"&targetDt=20220701&multiMovieYn=N"
+      "https://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=" + KORMOVIE_KEY +"&targetDt=20220701&multiMovieYn=N"
     );
     const json = await response.json();
     console.log(json);
