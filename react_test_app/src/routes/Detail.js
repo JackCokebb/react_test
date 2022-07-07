@@ -11,7 +11,7 @@ function Detail(){
     
     useEffect(()=>{
         const getDetail = async()=>{
-            const json = await ( await fetch(`http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=f5eef3421c602c6cb7ea224104795888&movieCd=${id}`))
+            const json = await ( await fetch(`https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=f5eef3421c602c6cb7ea224104795888&movieCd=${id}`))
             .json();
             console.log(json);
             setDetail(json.movieInfoResult.movieInfo);
